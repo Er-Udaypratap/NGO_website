@@ -62,8 +62,10 @@
   /* Form */
   .form-mock label{display:block;font-size:12px;color:#6b6656;margin-bottom:6px;margin-top:16px;}
   .form-mock label:first-child{margin-top:0;}
-  .field{border:1px solid var(--line);border-radius:3px;height:38px;background:#FAF8F2;}
+  .field{border:1px solid var(--line);border-radius:3px;height:38px;background:#FAF8F2;width:100%;font-family:'Work Sans',sans-serif;font-size:13px;padding:0 12px;color:var(--ink);}
+  textarea.field{padding:8px 12px;resize:none;}
   .field.area{height:64px;}
+  .field:focus{outline:none;border-color:var(--forest);}
   .submit{margin-top:20px;background:var(--forest);color:#fff;border:none;padding:11px 26px;border-radius:3px;font-family:'Work Sans',sans-serif;font-weight:600;font-size:13.5px;}
 
   /* Stats */
@@ -120,14 +122,13 @@
 <div class="board">
 
   <div class="board-header">
-    <div class="eyebrow">Task 4 · Figma / Design Concept</div>
+    <div class="eyebrow">NGO WEBSITE</div>
     <h1>Essential Features for the InAmigos Foundation Website</h1>
     <p class="subtitle">Seven sections every NGO site needs — laid out as an annotated homepage concept, ready to screenshot or rebuild in Figma. Photo blocks are placeholders — swap in real InAmigos photos for the final version.</p>
   </div>
 
   <!-- 01 Donation Hero -->
   <div class="frame">
-    <div class="pin">01</div>
     <div class="frame-inner" style="padding:0;">
       <div class="hero">
         <div class="ph ph-1"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.4"><path d="M12 21s-7-4.35-9.5-8.5C.5 8.5 3 5 6.5 5c2 0 3.5 1.2 4.5 2.5C12 6.2 13.5 5 15.5 5 19 5 21.5 8.5 19.5 12.5 17 16.65 12 21 12 21z"/></svg></div>
@@ -136,8 +137,8 @@
           <h2>Serving Humanity with Compassion</h2>
           <p>One clear, always-visible path to give — this is the single most important conversion point on any NGO site.</p>
           <div class="btn-row">
-            <a class="btn btn-primary">Donate Now</a>
-            <a class="btn btn-ghost">See Where It Goes</a>
+            <a class="btn btn-primary" href="https://inamigosfoundation.org.in/" target="_blank" rel="noopener">Donate Now</a>
+            <a class="btn btn-ghost" href="https://inamigosfoundation.org.in/" target="_blank" rel="noopener">See Where It Goes</a>
           </div>
         </div>
       </div>
@@ -150,7 +151,6 @@
 
   <!-- 02 About / Story -->
   <div class="frame">
-    <div class="pin">02</div>
     <div class="frame-inner">
       <h4 class="title">Get to Know Us Better</h4>
       <div class="split">
@@ -166,14 +166,18 @@
 
   <!-- 03 Volunteer form -->
   <div class="frame">
-    <div class="pin">03</div>
     <div class="frame-inner form-mock">
       <h4 class="title">Become a Volunteer</h4>
       <p style="font-size:12.5px;color:#6b6656;margin:-8px 0 0;">Join 200+ volunteers active across 28 states.</p>
-      <label>Full Name</label><div class="field"></div>
-      <label>City / State</label><div class="field"></div>
-      <label>How would you like to help?</label><div class="field area"></div>
-      <button class="submit">Submit Application</button>
+      <form id="volunteer-form" onsubmit="return handleVolunteerSubmit(event)">
+        <label>Full Name</label><input class="field" type="text" required>
+        <label>City / State</label><input class="field" type="text" required>
+        <label>How would you like to help?</label><textarea class="field area" required></textarea>
+        <button class="submit" type="submit">Submit Application</button>
+      </form>
+      <div id="volunteer-thanks" style="display:none;margin-top:18px;background:#EAF3EC;border:1px solid #BFDAC8;border-radius:3px;padding:14px 16px;color:var(--forest-deep);font-size:13.5px;">
+        Thank you for your interest! Our team will reach out to you soon.
+      </div>
     </div>
     <div class="note">
       <div class="note-label">Volunteer Form</div>
@@ -183,7 +187,6 @@
 
   <!-- 04 Impact showcase -->
   <div class="frame">
-    <div class="pin">04</div>
     <div class="frame-inner">
       <h4 class="title">Our Impact So Far</h4>
       <div class="stats-grid">
@@ -201,7 +204,6 @@
 
   <!-- 05 Campaigns -->
   <div class="frame">
-    <div class="pin">05</div>
     <div class="frame-inner">
       <h4 class="title">Ongoing Campaigns</h4>
       <div class="campaign-grid">
@@ -227,7 +229,6 @@
 
   <!-- 06 Gallery -->
   <div class="frame">
-    <div class="pin">06</div>
     <div class="frame-inner">
       <h4 class="title">Our Gallery</h4>
       <div class="gallery-grid">
@@ -245,7 +246,6 @@
 
   <!-- 07 Events -->
   <div class="frame">
-    <div class="pin">07</div>
     <div class="frame-inner">
       <h4 class="title">Upcoming & Recent Events</h4>
       <div class="event-row">
@@ -267,7 +267,6 @@
 
   <!-- 08 Testimonials -->
   <div class="frame">
-    <div class="pin">08</div>
     <div class="frame-inner">
       <h4 class="title">Voices from the Field</h4>
       <div class="testi-row">
@@ -295,14 +294,16 @@
 
   <!-- 09 Newsletter / final CTA -->
   <div class="frame">
-    <div class="pin">09</div>
     <div class="frame-inner" style="padding:0;">
       <div class="cta-band">
         <h4>Stay Connected to Our Work</h4>
         <p>Get monthly updates on campaigns, events and where your support goes.</p>
-        <div class="cta-row">
-          <div class="field" style="width:220px;"></div>
-          <a class="btn btn-primary">Subscribe</a>
+        <form class="cta-row" onsubmit="return handleSubscribe(event)" style="align-items:center;">
+          <input class="field" style="width:220px;" type="email" placeholder="you@email.com" required>
+          <button class="btn btn-primary" type="submit" style="border:none;cursor:pointer;">Subscribe</button>
+        </form>
+        <div id="subscribe-thanks" style="display:none;margin-top:14px;color:var(--marigold);font-size:13px;font-weight:600;">
+          Thank you for subscribing!
         </div>
       </div>
     </div>
@@ -312,7 +313,21 @@
     </div>
   </div>
 
-  <footer class="credit">Prepared by Uday Pratap · CodeAlpha / InAmigos Foundation internship task</footer>
+  <footer class="credit">Prepared by Uday Pratap · InAmigos Foundation internship task</footer>
 </div>
+<script>
+  function handleVolunteerSubmit(e){
+    e.preventDefault();
+    document.getElementById('volunteer-form').style.display = 'none';
+    document.getElementById('volunteer-thanks').style.display = 'block';
+    return false;
+  }
+  function handleSubscribe(e){
+    e.preventDefault();
+    e.target.style.display = 'none';
+    document.getElementById('subscribe-thanks').style.display = 'block';
+    return false;
+  }
+</script>
 </body>
 </html>
