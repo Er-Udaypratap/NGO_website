@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InAmigos Foundation — Website Feature Highlight</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FBF6EC;
+    --forest:#1F4B39;
+    --forest-deep:#12301F;
+    --marigold:#E7A23A;
+    --terracotta:#C1512E;
+    --ink:#20241F;
+    --line:#D8CDB4;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--cream);font-family:'Work Sans',sans-serif;color:var(--ink);}
+  .board{max-width:960px;margin:0 auto;padding:48px 24px 80px;}
+  .board-header{text-align:center;margin-bottom:56px;}
+  .eyebrow{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:var(--terracotta);margin-bottom:10px;}
+  h1{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(28px,5vw,42px);line-height:1.15;margin:0 0 12px;color:var(--forest-deep);}
+  .subtitle{font-size:15px;color:#5b5647;max-width:520px;margin:0 auto;}
+  .frame{position:relative;background:#fff;border:1px solid var(--line);border-radius:4px;margin-bottom:64px;overflow:visible;box-shadow:0 1px 0 var(--line);}
+  .pin{position:absolute;top:-16px;left:-16px;width:34px;height:34px;border-radius:50% 50% 50% 4px;background:var(--terracotta);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-weight:700;font-size:14px;z-index:3;box-shadow:0 3px 6px rgba(0,0,0,0.18);}
+  .frame-inner{padding:32px;}
+  .note{background:var(--forest);color:var(--cream);padding:16px 20px;border-radius:0 0 4px 4px;display:flex;gap:14px;align-items:flex-start;}
+  .note-label{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--marigold);white-space:nowrap;padding-top:2px;}
+  .note-text{font-size:13.5px;line-height:1.5;color:#EFE9D8;}
+  h4.title{font-family:'Fraunces',serif;margin:0 0 16px;color:var(--forest-deep);font-size:18px;}
+
+  /* generic image placeholder */
+  .ph{display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+  .ph svg{width:38%;height:38%;opacity:0.92;}
+  .ph-1{background:linear-gradient(135deg,#2C5C46,#0F2A1C);}
+  .ph-2{background:linear-gradient(135deg,#E7A23A,#B8791F);}
+  .ph-3{background:linear-gradient(135deg,#C1512E,#8B3A20);}
+  .ph-4{background:linear-gradient(135deg,#3A6B54,#1B3E2C);}
+  .ph-5{background:linear-gradient(135deg,#D9B26A,#A9781F);}
+
+  /* Hero */
+  .hero{position:relative;border-radius:4px 4px 0 0;overflow:hidden;min-height:320px;display:flex;align-items:center;justify-content:center;text-align:center;}
+  .hero .ph{position:absolute;inset:0;}
+  .hero .ph svg{width:22%;height:22%;opacity:0.35;}
+  .hero-content{position:relative;z-index:2;color:#fff;padding:32px;}
+  .hero .tag{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;color:var(--marigold);text-transform:uppercase;}
+  .hero h2{font-family:'Fraunces',serif;font-size:32px;margin:10px 0 8px;}
+  .hero p{font-size:14px;color:#EDEFE7;max-width:440px;margin:0 auto 22px;}
+  .btn-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+  .btn{font-family:'Work Sans',sans-serif;font-weight:600;font-size:13.5px;padding:12px 22px;border-radius:3px;text-decoration:none;}
+  .btn-primary{background:var(--marigold);color:var(--forest-deep);}
+  .btn-ghost{border:1px solid rgba(255,255,255,0.6);color:#fff;}
+
+  /* About / story split */
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center;}
+  .split .ph{width:100%;height:220px;border-radius:3px;}
+  .split p{font-size:13.5px;color:#4c4838;line-height:1.6;}
+  @media(max-width:640px){.split{grid-template-columns:1fr;}}
+
+  /* Form */
+  .form-mock label{display:block;font-size:12px;color:#6b6656;margin-bottom:6px;margin-top:16px;}
+  .form-mock label:first-child{margin-top:0;}
+  .field{border:1px solid var(--line);border-radius:3px;height:38px;background:#FAF8F2;}
+  .field.area{height:64px;}
+  .submit{margin-top:20px;background:var(--forest);color:#fff;border:none;padding:11px 26px;border-radius:3px;font-family:'Work Sans',sans-serif;font-weight:600;font-size:13.5px;}
+
+  /* Stats */
+  .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+  .stat{text-align:center;border:1px solid var(--line);border-radius:3px;padding:18px 8px;}
+  .stat .num{font-family:'Fraunces',serif;font-size:28px;color:var(--terracotta);font-weight:700;}
+  .stat .lbl{font-size:11.5px;color:#6b6656;margin-top:4px;}
+  @media(max-width:600px){.stats-grid{grid-template-columns:repeat(2,1fr);}}
+
+  /* Campaigns with images */
+  .campaign-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+  .campaign{border:1px solid var(--line);border-radius:3px;overflow:hidden;}
+  .campaign .ph{height:100px;}
+  .campaign .body{padding:12px;}
+  .campaign h5{font-family:'Fraunces',serif;font-size:15px;margin:0 0 4px;color:var(--forest-deep);}
+  .campaign p{font-size:11.5px;color:#6b6656;margin:0;}
+  @media(max-width:600px){.campaign-grid{grid-template-columns:repeat(2,1fr);}}
+
+  /* Gallery */
+  .gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+  .gallery-grid .ph{height:110px;border-radius:3px;}
+  @media(max-width:600px){.gallery-grid{grid-template-columns:repeat(2,1fr);}}
+
+  /* Events */
+  .event-row{display:flex;gap:16px;flex-wrap:wrap;}
+  .event{flex:1 1 260px;border:1px solid var(--line);border-radius:3px;overflow:hidden;}
+  .event .ph{height:130px;}
+  .event .body{padding:14px;}
+  .event .date{font-family:'Space Mono',monospace;font-size:10.5px;color:var(--terracotta);text-transform:uppercase;}
+  .event h5{font-family:'Fraunces',serif;font-size:15px;margin:6px 0 4px;color:var(--forest-deep);}
+  .event p{font-size:12px;color:#6b6656;margin:0;}
+
+  /* Testimonials */
+  .testi-row{display:flex;gap:16px;flex-wrap:wrap;}
+  .testi{flex:1 1 240px;border:1px solid var(--line);border-radius:3px;padding:18px;background:#FAF8F2;}
+  .testi p.quote{font-size:13px;font-style:italic;color:#403c30;margin:0 0 12px;line-height:1.5;}
+  .testi .who{display:flex;align-items:center;gap:10px;}
+  .avatar{width:34px;height:34px;border-radius:50%;flex-shrink:0;}
+  .avatar span{font-family:'Space Mono',monospace;font-size:12px;color:#fff;}
+  .who .name{font-size:12.5px;font-weight:600;}
+  .who .role{font-size:11px;color:#6b6656;}
+
+  /* Newsletter / footer CTA */
+  .cta-band{background:linear-gradient(135deg,var(--forest-deep),var(--forest));color:#fff;border-radius:4px 4px 0 0;padding:36px 32px;text-align:center;}
+  .cta-band h4{font-family:'Fraunces',serif;font-size:22px;margin:0 0 8px;}
+  .cta-band p{font-size:13px;color:#D9E3DA;margin:0 0 18px;}
+  .cta-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+  .cta-row .field{width:220px;background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.3);}
+
+  footer.credit{text-align:center;font-family:'Space Mono',monospace;font-size:11px;color:#8a836c;margin-top:20px;}
+</style>
+</head>
+<body>
+<div class="board">
+
+  <div class="board-header">
+    <div class="eyebrow">Task 4 · Figma / Design Concept</div>
+    <h1>Essential Features for the InAmigos Foundation Website</h1>
+    <p class="subtitle">Seven sections every NGO site needs — laid out as an annotated homepage concept, ready to screenshot or rebuild in Figma. Photo blocks are placeholders — swap in real InAmigos photos for the final version.</p>
+  </div>
+
+  <!-- 01 Donation Hero -->
+  <div class="frame">
+    <div class="pin">01</div>
+    <div class="frame-inner" style="padding:0;">
+      <div class="hero">
+        <div class="ph ph-1"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.4"><path d="M12 21s-7-4.35-9.5-8.5C.5 8.5 3 5 6.5 5c2 0 3.5 1.2 4.5 2.5C12 6.2 13.5 5 15.5 5 19 5 21.5 8.5 19.5 12.5 17 16.65 12 21 12 21z"/></svg></div>
+        <div class="hero-content">
+          <div class="tag">Sewa · Bachpanshala · Jeev · Udaan · Prakriti</div>
+          <h2>Serving Humanity with Compassion</h2>
+          <p>One clear, always-visible path to give — this is the single most important conversion point on any NGO site.</p>
+          <div class="btn-row">
+            <a class="btn btn-primary">Donate Now</a>
+            <a class="btn btn-ghost">See Where It Goes</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="note">
+      <div class="note-label">Donation Section</div>
+      <div class="note-text">Full-width visual + sticky "Donate" CTA above the fold, with a short line on impact so a first-time visitor trusts where money goes.</div>
+    </div>
+  </div>
+
+  <!-- 02 About / Story -->
+  <div class="frame">
+    <div class="pin">02</div>
+    <div class="frame-inner">
+      <h4 class="title">Get to Know Us Better</h4>
+      <div class="split">
+        <div class="ph ph-4"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.4"><circle cx="8" cy="9" r="2.6"/><circle cx="16" cy="9" r="2.6"/><path d="M3 20c0-3 2.5-5 5-5s5 2 5 5"/><path d="M11 20c0-3 2.5-5 5-5s5 2 5 5"/></svg></div>
+        <p>Founded 23 Sept 2020 by Mr. Govind Shukla, InAmigos is a Section 8, 80G & 12A registered non-profit based in Chhattisgarh — CSR-1 and NITI Aayog registered, ISO 9001:2015 certified. Our work spans food & clothing drives, education, animal welfare, women's empowerment and environmental sustainability.</p>
+      </div>
+    </div>
+    <div class="note">
+      <div class="note-label">About / Trust Section</div>
+      <div class="note-text">Certifications (80G, 12A, CSR-1) shown near a real photo build donor trust faster than text alone.</div>
+    </div>
+  </div>
+
+  <!-- 03 Volunteer form -->
+  <div class="frame">
+    <div class="pin">03</div>
+    <div class="frame-inner form-mock">
+      <h4 class="title">Become a Volunteer</h4>
+      <p style="font-size:12.5px;color:#6b6656;margin:-8px 0 0;">Join 200+ volunteers active across 28 states.</p>
+      <label>Full Name</label><div class="field"></div>
+      <label>City / State</label><div class="field"></div>
+      <label>How would you like to help?</label><div class="field area"></div>
+      <button class="submit">Submit Application</button>
+    </div>
+    <div class="note">
+      <div class="note-label">Volunteer Form</div>
+      <div class="note-text">A short, low-friction form (not a redirect to Google Forms) keeps people from dropping off before they sign up.</div>
+    </div>
+  </div>
+
+  <!-- 04 Impact showcase -->
+  <div class="frame">
+    <div class="pin">04</div>
+    <div class="frame-inner">
+      <h4 class="title">Our Impact So Far</h4>
+      <div class="stats-grid">
+        <div class="stat"><div class="num">200+</div><div class="lbl">Volunteers</div></div>
+        <div class="stat"><div class="num">28</div><div class="lbl">States</div></div>
+        <div class="stat"><div class="num">6</div><div class="lbl">Active Causes</div></div>
+        <div class="stat"><div class="num">50K+</div><div class="lbl">Beneficiaries</div></div>
+      </div>
+    </div>
+    <div class="note">
+      <div class="note-label">Impact Showcase</div>
+      <div class="note-text">Real numbers build credibility fast — pull these live from the causes/volunteers data instead of hardcoding.</div>
+    </div>
+  </div>
+
+  <!-- 05 Campaigns -->
+  <div class="frame">
+    <div class="pin">05</div>
+    <div class="frame-inner">
+      <h4 class="title">Ongoing Campaigns</h4>
+      <div class="campaign-grid">
+        <div class="campaign">
+          <div class="ph ph-3"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.4"><path d="M4 10c0-3 3.5-5 8-5s8 2 8 5-3.5 5-8 5-8-2-8-5z"/><path d="M4 10v4c0 2 3.5 4 8 4s8-2 8-4v-4"/></svg></div>
+          <div class="body"><h5>Project Seva</h5><p>Food & clothing drives</p></div>
+        </div>
+        <div class="campaign">
+          <div class="ph ph-2"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.4"><path d="M4 6.5C4 5.7 4.7 5 5.5 5H11v14H5.5c-.8 0-1.5-.7-1.5-1.5v-11z"/><path d="M20 6.5c0-.8-.7-1.5-1.5-1.5H13v14h5.5c.8 0 1.5-.7 1.5-1.5v-11z"/></svg></div>
+          <div class="body"><h5>Bachpanshala</h5><p>Education for children</p></div>
+        </div>
+        <div class="campaign">
+          <div class="ph ph-4"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.4"><circle cx="7" cy="8" r="1.4"/><circle cx="11" cy="6" r="1.4"/><circle cx="15" cy="6" r="1.4"/><circle cx="18" cy="9" r="1.4"/><path d="M12.5 12c-3 0-5.5 2-5.5 4.5S9 20 12 20s5.5-1 5.5-3.5S15.5 12 12.5 12z"/></svg></div>
+          <div class="body"><h5>Project Jeev</h5><p>Animal welfare & rescue</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="note">
+      <div class="note-label">Campaigns Section</div>
+      <div class="note-text">Each project gets a photo card with a "Support This Cause" link — lets donors give to something specific, not just a general fund.</div>
+    </div>
+  </div>
+
+  <!-- 06 Gallery -->
+  <div class="frame">
+    <div class="pin">06</div>
+    <div class="frame-inner">
+      <h4 class="title">Our Gallery</h4>
+      <div class="gallery-grid">
+        <div class="ph ph-1"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.4"><rect x="3" y="6" width="18" height="13" rx="1.5"/><circle cx="12" cy="12.5" r="3.2"/><path d="M8 6l1.2-2h5.6L16 6"/></svg></div>
+        <div class="ph ph-2"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.4"><rect x="3" y="6" width="18" height="13" rx="1.5"/><circle cx="12" cy="12.5" r="3.2"/><path d="M8 6l1.2-2h5.6L16 6"/></svg></div>
+        <div class="ph ph-3"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.4"><rect x="3" y="6" width="18" height="13" rx="1.5"/><circle cx="12" cy="12.5" r="3.2"/><path d="M8 6l1.2-2h5.6L16 6"/></svg></div>
+        <div class="ph ph-4"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.4"><rect x="3" y="6" width="18" height="13" rx="1.5"/><circle cx="12" cy="12.5" r="3.2"/><path d="M8 6l1.2-2h5.6L16 6"/></svg></div>
+      </div>
+    </div>
+    <div class="note">
+      <div class="note-label">Gallery / Events Photos</div>
+      <div class="note-text">Recent on-ground photos make the foundation feel active and current, not a static brochure site.</div>
+    </div>
+  </div>
+
+  <!-- 07 Events -->
+  <div class="frame">
+    <div class="pin">07</div>
+    <div class="frame-inner">
+      <h4 class="title">Upcoming & Recent Events</h4>
+      <div class="event-row">
+        <div class="event">
+          <div class="ph ph-4"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.4"><path d="M12 3C7 8 5 11 5 14.5A7 7 0 0019 14.5C19 11 17 8 12 3z"/></svg></div>
+          <div class="body"><div class="date">22 Mar 2025 · Community</div><h5>World Water Day 2025</h5><p>Water conservation drive and awareness walk.</p></div>
+        </div>
+        <div class="event">
+          <div class="ph ph-2"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.4"><circle cx="12" cy="12" r="8"/><path d="M9 10c0-.5.5-1 1-1s1 .5 1 1M13 10c0-.5.5-1 1-1s1 .5 1 1M8 14c1 1.5 2.5 2 4 2s3-.5 4-2"/></svg></div>
+          <div class="body"><div class="date">20 Mar 2025 · Community</div><h5>International Day of Happiness</h5><p>Activities spreading joy and well-being.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="note">
+      <div class="note-label">Events Section</div>
+      <div class="note-text">A dated events feed shows the foundation is consistently active, which matters to CSR partners doing due diligence.</div>
+    </div>
+  </div>
+
+  <!-- 08 Testimonials -->
+  <div class="frame">
+    <div class="pin">08</div>
+    <div class="frame-inner">
+      <h4 class="title">Voices from the Field</h4>
+      <div class="testi-row">
+        <div class="testi">
+          <p class="quote">"Volunteering here connected me to a real support network across states."</p>
+          <div class="who">
+            <div class="avatar ph ph-3" style="display:flex;align-items:center;justify-content:center;"><span>FK</span></div>
+            <div><div class="name">Faiz Khan</div><div class="role">Volunteer Supervisor, UP</div></div>
+          </div>
+        </div>
+        <div class="testi">
+          <p class="quote">"I saw exactly how my monthly donation reached the Bachpanshala classrooms."</p>
+          <div class="who">
+            <div class="avatar ph ph-2" style="display:flex;align-items:center;justify-content:center;"><span>MJ</span></div>
+            <div><div class="name">Manavi Jaiswal</div><div class="role">Volunteer Associate</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="note">
+      <div class="note-label">Testimonials</div>
+      <div class="note-text">First-person quotes with a name, role and initials-avatar reassure new visitors the work is genuine.</div>
+    </div>
+  </div>
+
+  <!-- 09 Newsletter / final CTA -->
+  <div class="frame">
+    <div class="pin">09</div>
+    <div class="frame-inner" style="padding:0;">
+      <div class="cta-band">
+        <h4>Stay Connected to Our Work</h4>
+        <p>Get monthly updates on campaigns, events and where your support goes.</p>
+        <div class="cta-row">
+          <div class="field" style="width:220px;"></div>
+          <a class="btn btn-primary">Subscribe</a>
+        </div>
+      </div>
+    </div>
+    <div class="note">
+      <div class="note-label">Newsletter Signup</div>
+      <div class="note-text">Captures visitors who aren't ready to donate or volunteer today, so the foundation can follow up later.</div>
+    </div>
+  </div>
+
+  <footer class="credit">Prepared by Uday Pratap · CodeAlpha / InAmigos Foundation internship task</footer>
+</div>
+</body>
+</html>
